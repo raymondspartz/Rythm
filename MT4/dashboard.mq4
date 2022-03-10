@@ -139,15 +139,9 @@ extern int Text_TF_shift_X = 60;
 extern int Text_TF_shift_Y = -30;
 extern color Text_TF_color = clrBlack;
 
-
-// string TFs = "250-320-400-500-640-800";
-
-//string TFs = "313-345-380-417-459-505-555-611-672-740-814";
-
 string TFs = "1792-2000-2256-2528-2828-3200-3584-4000-4512-5056-5656-14336";
 
-
-
+//=======================================================================
 
 string identif="RYTHM";
 string spliter = "-";
@@ -209,14 +203,11 @@ int OnInit()
    add_symbols_market_watch_f();
  
    QuickInitDone = false ;
-
-   
    
  //  Comment("INIT 99 ",TimeToString(TimeCurrent(),TIME_SECONDS));
    
    return(INIT_SUCCEEDED);
 }
-
 
 //+------------------------------------------------------------------+
 
@@ -261,7 +252,7 @@ void DoCalcBox( int a, int b, double bBoxSize)
          
 // build first box     
   
-         for(int w=0; w<6000; w++)
+         for(int w=0; w<10000; w++)
          {
             nHH =  iHighest(pairs_b[a], PERIOD_M1,MODE_HIGH,w+1,0);   
             HH  =  iHigh(pairs_b[a], PERIOD_M1,nHH);         
@@ -276,7 +267,7 @@ void DoCalcBox( int a, int b, double bBoxSize)
 
          minHHLL = MathMax(nHH,nLL);
          
-         for(int w=0; w<6000; w++)
+         for(int w=0; w<10000; w++)
          {
             nHH1 =  iHighest(pairs_b[a], PERIOD_M1,MODE_HIGH,w+1,minHHLL);   
             HH1  =  iHigh(pairs_b[a], PERIOD_M1,nHH1);         
@@ -289,8 +280,6 @@ void DoCalcBox( int a, int b, double bBoxSize)
             
          }  // for
   
-            
-     
          if(HH>HH1)
          {
             RngHigh[a][b]        = HH ;  
@@ -311,11 +300,9 @@ void DoCalcBox( int a, int b, double bBoxSize)
          } // if      
                  
          RngSize[a][b] = theBoxSize;
- 
          
       } // if
    }   
-   
     
 // test for new box
 
@@ -393,7 +380,6 @@ void DoCalcBox( int a, int b, double bBoxSize)
    
    return;
 }
-  
 //+------------------------------------------------------------------+
 
 void OnDeinit(const int reason)
@@ -404,15 +390,12 @@ void OnDeinit(const int reason)
 
 }
 
-
 //+------------------------------------------------------------------+
 
 int OnCalculate(const int rates_total,const int prev_calculated,const datetime &time[],const double &open[],const double &high[],
                 const double &low[],const double &close[],const long &tick_volume[],const long &volume[],const int &spread[])
   {
  
- 
-  
  
   if(update_seconds==0 || !first_chek || testing) 
   {
